@@ -26,6 +26,7 @@ export class createUserController {
         },
       });
       res.status(201).json({ message: "User created successfully" });
+      return newUser;
     } catch (e: any) {
       console.error(e.message);
       res.status(500).json({ error: "Error while creating user" });
