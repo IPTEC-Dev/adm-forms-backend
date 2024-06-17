@@ -20,5 +20,15 @@ services Services[]
 model Services {
   id Int @id @default(autoincrement())
   type String
+  register String? 
+  created_at DateTime
   attendant Attendant @relation(fields: [id], references: [id])
+  ratingId    Int?  
+  rating      Rating?   @relation(fields: [ratingId], references: [id])
+}
+
+model Rating {
+  id Int @id @default(autoincrement())
+  questions String[]
+  service Services[]
 }
