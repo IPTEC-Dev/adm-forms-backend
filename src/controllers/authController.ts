@@ -33,7 +33,7 @@ export class createUserController {
   }
 }
 
-export class LoginUser {
+export class LoginUserController {
   async loginUser(req: Request, res: Response) {
     const { email, password } = req.body;
 
