@@ -22,13 +22,14 @@ model Services {
   type String
   register String? 
   created_at DateTime
-  attendant Attendant @relation(fields: [id], references: [id])
-  ratingId    Int?  
-  rating      Rating?   @relation(fields: [ratingId], references: [id])
+  id_attendant Int
+  attendant Attendant @relation(fields: [id_attendant], references: [id])
+  id_rating    Int?  @unique
+  rating      Rating?   @relation(fields: [id_rating], references: [id])
 }
 
 model Rating {
   id Int @id @default(autoincrement())
   questions String[]
-  service Services[]
+  service Services?
 }

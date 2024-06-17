@@ -3,14 +3,14 @@ import { prisma } from "../database/prismaClient";
 
 export class createServiceController {
   async createAttendment(req: Request, res: Response) {
-    const { userId, type, register } = req.body;
+    const { id_attendant, type, register } = req.body;
     try {
-      const creationDate = new Date(Date.now());
       const newAttendment = await prisma.services.create({
         data: {
           type,
           register,
-          created_at: creationDate,
+          created_at: new Date(),
+          id_attendant: 1,
         },
       });
       res.status(201).json({ message: "Attendment created successfully" });
