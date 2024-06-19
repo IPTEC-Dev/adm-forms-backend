@@ -3,8 +3,6 @@ import { prisma } from "../database/prismaClient";
 
 export class createServiceController {
   async createService(req: Request, res: Response) {
-    console.log("Request Body:", req.body); // Log do corpo da requisição
-
     const { id_attendant, type, register } = req.body;
 
     if (!id_attendant || !type) {

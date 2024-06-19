@@ -31,5 +31,6 @@ model Services {
 model Rating {
   id Int @id @default(autoincrement())
   questions String[]
+  id_service Int?
   service Services?
 }
