@@ -52,7 +52,9 @@ export class LoginUserController {
       const token = jwt.sign({ userId: user.id }, jwtToken, {
         expiresIn: "90d",
       });
-      res.status(200).json({ Message: "Login successful", token });
+      res
+        .status(200)
+        .json({ Message: "Login successful", token, userId: user.id });
     } catch (e: any) {
       console.error("Error while login", e.message);
       return res.status(500).json({ error: "Error while login" });

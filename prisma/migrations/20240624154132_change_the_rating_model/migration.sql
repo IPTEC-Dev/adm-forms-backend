@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Rating" ALTER COLUMN "questions" SET NOT NULL,
+ALTER COLUMN "questions" SET DATA TYPE TEXT;
