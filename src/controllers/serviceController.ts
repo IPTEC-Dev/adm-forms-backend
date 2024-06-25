@@ -28,4 +28,13 @@ export class createServiceController {
       res.status(500).json({ error: "Error while creating service" });
     }
   }
+  async getServices(req: Request, res: Response) {
+    try {
+      const services = await prisma.services.findMany();
+      res.json({ services });
+    } catch (e: any) {
+      console.error(e.message);
+      res.status(500).json({ error: "Error while getting services" });
+    }
+  }
 }

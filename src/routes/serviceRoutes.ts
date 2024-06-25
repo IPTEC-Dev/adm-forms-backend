@@ -5,5 +5,6 @@ const serviceRouter = Router();
 const createService = new createServiceController();
 
 serviceRouter.post("/create-service", createService.createService);
+serviceRouter.get("/get-services", createService.getServices);
 
 export { serviceRouter };

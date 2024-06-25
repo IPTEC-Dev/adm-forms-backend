@@ -10,7 +10,6 @@ export class ratingController {
         .json({ error: "id_service and questions are required" });
     }
     try {
-      // Serializa o objeto questions para uma string JSON
       const serializedQuestions = JSON.stringify(questions);
 
       const newRating = await prisma.rating.create({

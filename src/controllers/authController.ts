@@ -61,3 +61,33 @@ export class LoginUserController {
     }
   }
 }
+
+export class UserController {
+  async getUserWithServices(req: Request, res: Response) {
+    const { userId } = req.params;
+
+    try {
+      const user = await prisma.attendant.findUnique({
+        where: { id: parseInt(userId) },
+        select: {
+          id: true,
+          name: true,
+          last_name: true,
+          email: true,
+          services: true,
+        },
+      });
+
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      res.status(200).json({ user });
+    } catch (e: any) {
+      console.error("Error while fetching user and services", e.message);
+      return res
+        .status(500)
+        .json({ error: "Error while fetching user and services" });
+    }
+  }
+}
