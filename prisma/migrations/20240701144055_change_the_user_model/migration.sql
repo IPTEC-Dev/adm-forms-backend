@@ -5,6 +5,7 @@ CREATE TABLE "Attendant" (
     "last_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "adm" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Attendant_pkey" PRIMARY KEY ("id")
 );
@@ -24,7 +25,8 @@ CREATE TABLE "Services" (
 -- CreateTable
 CREATE TABLE "Rating" (
     "id" SERIAL NOT NULL,
-    "questions" TEXT[],
+    "questions" TEXT NOT NULL,
+    "id_service" INTEGER,
 
     CONSTRAINT "Rating_pkey" PRIMARY KEY ("id")
 );

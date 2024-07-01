@@ -7,7 +7,7 @@ const jwtToken = process.env.JWT_KEY || "";
 
 export class createUserController {
   async createAttendant(req: Request, res: Response) {
-    const { name, last_name, email, password } = req.body;
+    const { name, last_name, email, password, adm = false } = req.body;
 
     try {
       const existingEmail = await prisma.attendant.findUnique({
@@ -23,6 +23,7 @@ export class createUserController {
           last_name,
           email,
           password: hashedPassword,
+          adm,
         },
       });
       res.status(201).json({ message: "User created successfully" });
