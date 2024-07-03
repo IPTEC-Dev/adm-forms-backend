@@ -35,7 +35,13 @@ export class createServiceController {
           rating: true, // Inclui as avaliações relacionadas
         },
       });
-      res.json({ services });
+      const transformedServices = services.map((service) => {
+        if (service.rating) {
+          service.rating.questions = JSON.parse(service.rating.questions);
+        }
+        return service;
+      });
+      res.json({ services: transformedServices });
     } catch (e: any) {
       console.error(e.message);
       res.status(500).json({ error: "Error while getting services" });

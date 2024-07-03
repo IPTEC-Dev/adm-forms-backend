@@ -14,10 +14,19 @@ export class ratingController {
 
       const newRating = await prisma.rating.create({
         data: {
-          id_service,
           questions: serializedQuestions,
+          service: {
+            connect: { id: id_service },
+          },
         },
       });
+
+      // Update the service to reference the new rating
+      await prisma.services.update({
+        where: { id: id_service },
+        data: { id_rating: newRating.id },
+      });
+
       res
         .status(201)
         .json({ message: "Rating created successfully", rating: newRating });
