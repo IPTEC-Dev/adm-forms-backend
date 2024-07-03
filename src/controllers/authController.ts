@@ -55,7 +55,12 @@ export class LoginUserController {
       });
       res
         .status(200)
-        .json({ Message: "Login successful", token, userId: user.id });
+        .json({
+          Message: "Login successful",
+          token,
+          userId: user.id,
+          userType: user.adm,
+        });
     } catch (e: any) {
       console.error("Error while login", e.message);
       return res.status(500).json({ error: "Error while login" });
@@ -89,6 +94,22 @@ export class UserController {
       return res
         .status(500)
         .json({ error: "Error while fetching user and services" });
+    }
+  }
+  async getUsers(req: Request, res: Response) {
+    try {
+      const users = await prisma.attendant.findMany({
+        select: {
+          id: true,
+          name: true,
+          last_name: true,
+          email: true,
+        },
+      });
+      res.status(200).json({ users });
+    } catch (e: any) {
+      console.error("Error while fetching users", e.message);
+      return res.status(500).json({ error: "Error while fetching users" });
     }
   }
 }

@@ -30,7 +30,11 @@ export class createServiceController {
   }
   async getServices(req: Request, res: Response) {
     try {
-      const services = await prisma.services.findMany();
+      const services = await prisma.services.findMany({
+        include: {
+          rating: true, // Inclui as avaliações relacionadas
+        },
+      });
       res.json({ services });
     } catch (e: any) {
       console.error(e.message);

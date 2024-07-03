@@ -13,5 +13,6 @@ const userController = new UserController();
 authRouter.post("/signup", createUser.createAttendant);
 authRouter.post("/login", loginUser.loginUser);
 authRouter.get("/user/:userId", userController.getUserWithServices);
+authRouter.get("/users", userController.getUsers);
 
 export { authRouter };
