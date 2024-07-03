@@ -32,7 +32,8 @@ export class createServiceController {
     try {
       const services = await prisma.services.findMany({
         include: {
-          rating: true, // Inclui as avaliações relacionadas
+          rating: true,
+          attendant: true,
         },
       });
       const transformedServices = services.map((service) => {
