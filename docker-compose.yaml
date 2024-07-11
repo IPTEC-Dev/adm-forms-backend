@@ -13,5 +13,18 @@ services:
     volumes:
       - adm_pg_data:/bitnami/postgresql
 
+  app:
+    build: .
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://corinthians:sccp1910@postgres:5432/adm
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+
 volumes:
   adm_pg_data:
