@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
+    "start": "src/server.ts",
     "build": "tsc"
   },
   "dependencies": {
