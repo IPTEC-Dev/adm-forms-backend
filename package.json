@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
     "start": "src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
